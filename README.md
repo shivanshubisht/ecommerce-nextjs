@@ -1,2 +1,2 @@
-# ecommerce-web-master
+# ecommerce-nextjs
 ecommerce-nextjs
