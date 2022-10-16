@@ -3,20 +3,51 @@ import Link from 'next/link'
 import styles from './Card.module.css'
 import { useCart } from '../../../context/Context'
 
-const Card = ({ products = [] }) => {
+const Card = ({ products }) => {
 
 
     const { cart, addToCart, reduceFromCart, removeFromCart, clearCart, isInCart, itemQuantity, getTotalItems, getTotalPrice } = useCart();
 
-    console.log(cart)
     return (
         <div className={styles.containerMain}>
-            {products.map((product) => {
+            {products.map(product => {
                 return (
+                    // <div key={product.id} className={styles.shopCard}>
+                    //     <Link href={`/products/${product.id}`}>
+                    //         {/* need to wrap the content of link tag in a jsx fragment or div */}
+                    //         <>
+                    //             <div className={styles.title}>
+                    //                 {product.title}
+                    //             </div>
+                    //             <div className={styles.desc}>
+                    //                 {product.category}
+                    //             </div>
+                    //             <div className={styles.slider}>
+                    //                 <Image src={product.image} alt={product.name} width={300} height={280} />
+                    //             </div>
+                    //         </>
+                    //     </Link>
+
+                    // <div key={product.id} className={styles.shopCard}>
+                    //     <Link href={`/products/${product.id}`}>
+                    //         {/* need to wrap the content of link tag in a jsx fragment or div */}
+                    //         <div className={styles.title}>
+                    //             {product.title}
+                    //         </div>
+                    //     </Link>
+                    //     <>
+                    //         <div className={styles.desc}>
+                    //             {product.category}
+                    //         </div>
+                    //         <div className={styles.slider}>
+                    //             <Image src={product.image} alt={product.name} width={300} height={280} />
+                    //         </div>
+                    //     </>
+
                     <div key={product.id} className={styles.shopCard}>
-                        <Link href={`/product/${product.id}`}>
+                        <Link href={`/products/${product.id}`}>
                             {/* need to wrap the content of link tag in a jsx fragment or div */}
-                            <>
+                            <a>
                                 <div className={styles.title}>
                                     {product.title}
                                 </div>
@@ -26,7 +57,7 @@ const Card = ({ products = [] }) => {
                                 <div className={styles.slider}>
                                     <Image src={product.image} alt={product.name} width={300} height={280} />
                                 </div>
-                            </>
+                            </a>
                         </Link>
 
                         <div className={styles.cta}>
@@ -38,9 +69,6 @@ const Card = ({ products = [] }) => {
                                     <button className={styles.quantityValue} onClick={() => addToCart(product)}>+</button>
                                 </>
                             ) : (
-
-
-
                                 <button
                                     className={styles.btn}
                                     onClick={() => addToCart(product)}

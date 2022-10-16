@@ -12,9 +12,9 @@ const CartContext = ({ children }) => {
         localStorage.setItem('cart', JSON.stringify(newCart));
     };
 
-    const reduceFromCart = (product) => {
+    const reduceFromCart = (id) => {
         const newCart = [...cart];
-        const index = newCart.findIndex((product) => product.id === product.id);
+        const index = newCart.findIndex((product) => product.id === id);
         if (index > -1) {
             newCart.splice(index, 1);
             setCart(newCart);
