@@ -1,12 +1,15 @@
-
-
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+// eslint-disable-next-line import/no-anonymous-default-export
 export default async (req, res) => {
+
     const { items, email } = req.body;
+    console.log(items);
+    console.log(email);
+    //stripe accepts data items in this format that is why we have to transform it
     const transformedItems = items.map((item) => ({
         quantity: 1,
         price_data: {
-            currency: 'inr',
+            currency: 'usd',
             unit_amount: item.price * 100,
             product_data: {
                 name: item.name,
@@ -23,7 +26,7 @@ export default async (req, res) => {
                     type: 'fixed_amount',
                     fixed_amount: {
                         amount: 0,
-                        currency: 'inr',
+                        currency: 'usd',
                     },
                     display_name: 'Free shipping',
                     // Delivers between 5-7 business days
@@ -44,7 +47,7 @@ export default async (req, res) => {
                     type: 'fixed_amount',
                     fixed_amount: {
                         amount: 15000,
-                        currency: 'inr',
+                        currency: 'usd',
                     },
                     display_name: 'Next day air',
                     // Delivers in exactly 1 business day
@@ -63,7 +66,7 @@ export default async (req, res) => {
         ],
 
         shipping_address_collection: {
-            allowed_countries: ['IN'],
+            allowed_countries: ['IN','US'],
         },
         line_items: transformedItems,
         mode: 'payment',
@@ -77,10 +80,3 @@ export default async (req, res) => {
     res.status(200).json({ id: session.id });
 
 }
-
-
-
-
-
-
-

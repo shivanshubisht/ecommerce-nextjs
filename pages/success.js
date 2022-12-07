@@ -1,10 +1,15 @@
 function Success() {
- 
     return (
-        <div>
-            <h1>Payment was successful</h1>
+        <div className="success-container">
+            <div className="success-content">
+                <p className="salutation">
+                    Thank You!
+                </p>
+                <p className="message">
+                    Your Payment was successful
+                </p>
+            </div>
         </div>
     )
 }
-
 export default Success
