@@ -35,9 +35,7 @@ const SearchBar = ({ products }) => {
         <ul className='bg-white absolute -translate-x-40 translate-y-10 w-48'>
           {filteredProducts.map((product) => (
             <li key={product.id}>
-              <Link href={`/products/${product.id}`}>
-                <a>{product.title}</a>
-              </Link>
+              <Link href={`/products/${product.id}`}>{product.title}</Link>
             </li>
           ))}
         </ul>
